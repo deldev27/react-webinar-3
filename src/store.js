@@ -5,6 +5,7 @@ class Store {
 	constructor(initState = {}) {
 		this.state = initState
 		this.listeners = [] // Слушатели изменений состояния
+		this.number = this.state.list.length
 	}
 
 	/**
@@ -42,11 +43,12 @@ class Store {
 	 * Добавление новой записи
 	 */
 	addItem() {
+		this.number += 1
 		this.setState({
 			...this.state,
 			list: [
 				...this.state.list,
-				{ code: this.state.list.length + 1, title: 'Новая запись', count: 0 },
+				{ code: this.number, title: 'Новая запись', count: 0 },
 			],
 		})
 	}
@@ -72,8 +74,6 @@ class Store {
 			list: this.state.list.map(item => {
 				if (item.code === code) {
 					item.selected = !item.selected
-					// Задача 1.
-					// Доработать выделение записей, чтобы при выделении сбрасывалось выделения у других записей. Клик по выделенной записи тоже отменяет выделение.
 				} else {
 					item.selected = false
 				}
