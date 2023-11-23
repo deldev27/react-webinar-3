@@ -46,7 +46,7 @@ class Store {
 			...this.state,
 			list: [
 				...this.state.list,
-				{ code: this.state.list.length + 1, title: 'Новая запись' },
+				{ code: this.state.list.length + 1, title: 'Новая запись', count: 0 },
 			],
 		})
 	}
@@ -76,6 +76,9 @@ class Store {
 					// Доработать выделение записей, чтобы при выделении сбрасывалось выделения у других записей. Клик по выделенной записи тоже отменяет выделение.
 				} else {
 					item.selected = false
+				}
+				if (item.selected) {
+					item.count += 1
 				}
 				return item
 			}),
