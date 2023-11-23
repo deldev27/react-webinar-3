@@ -72,6 +72,10 @@ class Store {
 			list: this.state.list.map(item => {
 				if (item.code === code) {
 					item.selected = !item.selected
+					// Задача 1.
+					// Доработать выделение записей, чтобы при выделении сбрасывалось выделения у других записей. Клик по выделенной записи тоже отменяет выделение.
+				} else {
+					item.selected = false
 				}
 				return item
 			}),
