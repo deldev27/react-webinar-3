@@ -9,6 +9,27 @@ import './styles.css'
 function App({ store }) {
 	const list = store.getState().list
 
+	let wordCount
+	function Counter(item) {
+		if (item.count == 0) {
+			return null
+		}
+		if (item.count == 12 || item.count == 13 || item.count == 14) {
+			wordCount = `Выделили ${item.count} раз`
+		} else if (
+			item.count == 2 ||
+			item.count == 3 ||
+			item.count == 4 ||
+			item.count == 22 ||
+			item.count == 23 ||
+			item.count == 24
+		) {
+			wordCount = `Выделили ${item.count} раза`
+		} else {
+			wordCount = `Выделили ${item.count} раз`
+		}
+		return wordCount
+	}
 	return (
 		<div className='App'>
 			<div className='App-head'>
@@ -28,7 +49,7 @@ function App({ store }) {
 								<div className='Item-code'>{item.code}</div>
 								<div className='Item-title'>
 									{item.title}
-									{item.count != 0 && <div> Выделили {item.count} раз</div>}
+									<div style={{ fontSize: '12px' }}>{Counter(item)}</div>
 								</div>
 								<div className='Item-actions'>
 									<button onClick={() => store.deleteItem(item.code)}>
