@@ -1,3 +1,5 @@
+import { randomCode } from './index.js'
+
 /**
  * Хранилище состояния приложения
  */
@@ -5,7 +7,6 @@ class Store {
 	constructor(initState = {}) {
 		this.state = initState
 		this.listeners = [] // Слушатели изменений состояния
-		this.number = this.state.list.length
 	}
 
 	/**
@@ -48,7 +49,7 @@ class Store {
 			...this.state,
 			list: [
 				...this.state.list,
-				{ code: this.number, title: 'Новая запись', count: 0 },
+				{ code: randomCode(1, 999), title: 'Новая запись', count: 0 },
 			],
 		})
 	}
